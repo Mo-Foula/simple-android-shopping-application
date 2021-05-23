@@ -33,16 +33,7 @@ public class MainActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
-        Button btn = findViewById(R.id.button);
-        final Context mymine = this;
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent el3asfoor = new Intent(mymine, SplashScreen.class);
-                finish();
-                startActivity(el3asfoor);
-            }
-        });
+       
     }
 
     @Override
