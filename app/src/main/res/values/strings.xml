@@ -1,17 +1,29 @@
 <resources>
     <string name="app_name">Mobile_Section_Project</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_sign_up">SignUp</string>
     <string name="title_activity_cart">Cart</string>
     <string name="title_activity_home">Home</string>
+    <string name="title_activity_content_home_tabs">content_home_tabs</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string-array name="prog_langs">
+        <item>js</item>
+        <item>py</item>
+        <item>cs</item>
+        <item>cpp</item>
+        <item>java</item>
+        <item>dart</item>
+    </string-array>
+    <string-array name="description">
+        <item>js des</item>
+        <item>py des</item>
+        <item>cs des</item>
+        <item>cpp des</item>
+        <item>java des</item>
+        <item>dart des</item>
+    </string-array>
 </resources>
