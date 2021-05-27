@@ -1,0 +1,221 @@
+package com.example.mobile_section_project;
+
+import android.app.Application;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Map;
+
+public class Cart extends AppCompatActivity {
+Button btNotification;
+Button share;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cart);
+
+        final ArrayList<Item> items = new ArrayList<Item>();
+
+        //Item(int id, int image, String name, String description)
+        items.add(new Item(1,R.drawable.footwear1,"Jordan Gray White Red","Air Jordan 1 Retro High sneakers", 30));
+        items.add(new Item(2,R.drawable.footwear2,"Jordan White Black","Air Jordan 7 Retro \"Flint\" sneakers", 32.3));
+        items.add(new Item(3,R.drawable.footwear3,"Raf Simons","Cylon-21 low-top sneakers", 28));
+        items.add(new Item(4,R.drawable.footwear4,"Jordan Red","Air Jordan 13 Retro sneakers", 25));
+        items.add(new Item(5,R.drawable.footwear5,"Jordan White Baby Blue","Air Jordan 1 Retro High sneakers", 25));
+        items.add(new Item(6,R.drawable.footwear6,"Off-White","Vulcanized Fiag low-top sneakers", 25));
+        items.add(new Item(7,R.drawable.footwear7,"Palm Angels","Vulcanized touch-strap snakers", 25));
+        items.add(new Item(8,R.drawable.footwear8,"Dsquared2","Bubble low-top sneakers", 25));
+        items.add(new Item(9,R.drawable.footwear9,"Maison Margiela x Reebok","Tabi Instapump chunky sneakers", 25));
+        items.add(new Item(10,R.drawable.footwear10,"Dsquared2","551 lace-up sneakers", 25));
+        items.add(new Item(11,R.drawable.footwear11,"Dolce & Gabbana","logo print slip-on trainers", 25));
+        items.add(new Item(12,R.drawable.footwear11,"Dolce & Gabbana","logo print slip-on trainers", 25));
+
+
+
+        Intent it = getIntent();
+        final Map<Integer, Integer> cart = (Map<Integer, Integer>) it.getSerializableExtra("ItemsInCart");
+        RecyclerView RV = findViewById(R.id.recyclerview);
+        TextView total_price= findViewById(R.id.total_price);
+        final Cart_RecyclerViewAdapter cartRecyclerViewAdapter = new Cart_RecyclerViewAdapter(this, cart, items);
+        final double total = calcPrice(cart,items);
+        total_price.setText("Total Price: "+total+" EGP");
+
+        RV.setAdapter(cartRecyclerViewAdapter);
+        RV.setLayoutManager(new LinearLayoutManager(this));
+//*******************************************************************************
+        share = (Button)findViewById(R.id.share);
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                String shareBody= "Hello Sir You have ordered "+cart.size() +" items"+"\n"+"Your Total price is " +total +" EGP";
+                String shareSub = "Your subject here";
+                intent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
+                intent.putExtra(Intent.EXTRA_TEXT,shareBody);
+                startActivity(Intent.createChooser(intent,"Share using"));
+
+
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// **********************************************************************************************************************
+
+
+
+        btNotification = findViewById(R.id.notifi);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel("My Notification","My Notification",NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+
+        }
+        btNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                String message = "Order Has Been Confirmed *_* \n Your Total Price:" + total;
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(Cart.this,"My Notification");
+                                builder.setContentTitle("Confirmation Massage");
+                                builder.setContentText(message);
+                                builder.setSmallIcon(R.drawable.ic_message);
+
+                builder.setAutoCancel(true);
+                NotificationManagerCompat managerCompat = NotificationManagerCompat.from(Cart.this);
+
+                managerCompat.notify(1,builder.build());
+
+
+
+
+                //                Intent intent = new Intent(Cart.this,NotificationActivity.class);
+//
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                intent.putExtra("message",message);
+//                PendingIntent pendingIntent = PendingIntent.getActivity(Cart.this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+//                builder.setContentIntent(pendingIntent);
+//                NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+//                notificationManager.notify(0,builder.build());
+
+            }
+        });
+
+
+
+
+
+//********************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+    double calcPrice(Map<Integer, Integer> cart,ArrayList<Item> items){
+        double x=0;
+        for (Map.Entry<Integer, Integer> entry : cart.entrySet())
+            for( int i=0 ; i< items.size();i++ ){
+                if(entry.getKey() == items.get(i).getId()) {
+                    //momkn error
+                    x += entry.getValue()* items.get(i).getPrice();
+                    break;
+                }
+            }
+        return x;
+
+    }
+    void printCart(Map<Integer, Integer> cart) {
+        System.out.println("AAAAAAAAAAAAAAAAAAAAA");
+        for (Map.Entry<Integer, Integer> entry : cart.entrySet())
+            System.out.println("Key = " + entry.getKey() +
+                    ", Value = " + entry.getValue());
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+   /* @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected( MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.share){
+            ApplicationInfo api = getApplicationContext().getApplicationInfo();
+            String  apkpath = api.sourceDir;
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("application/vnd.android.package-archive");
+            intent.putExtra(intent.EXTRA_STREAM, Uri.fromFile(new File(apkpath)));
+            startActivity(Intent.createChooser(intent,"SharedVia"));
+        }
+        return true;
+    }*/
+}
