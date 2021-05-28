@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -51,9 +52,13 @@ public class Home extends AppCompatActivity {
         gotocart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(getApplicationContext(),Cart.class);
-                it.putExtra("ItemsInCart", (Serializable) homeRecyclerViewAdapter.cart);
-                startActivity(it);
+                if(!homeRecyclerViewAdapter.cart.isEmpty()){
+                    Intent it = new Intent(getApplicationContext(),Cart.class);
+                    it.putExtra("ItemsInCart", (Serializable) homeRecyclerViewAdapter.cart);
+                    startActivity(it);
+                }else{
+                    Toast.makeText(Home.this, "Can't go to cart with no items in it", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

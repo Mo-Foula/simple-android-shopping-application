@@ -51,8 +51,9 @@ public class Home_RecyclerViewAdapter extends RecyclerView.Adapter<Home_Recycler
 //        holder.title.setText(position+1+"");
         holder.title.setText(items.get(position).getName());
         holder.price.setText(items.get(position).getPrice() + " EGP");
-        holder.quantity.setText("0");
+
         final int id = position+1;//lazm el items sorted by ID
+        holder.quantity.setText(cart.containsKey(id) ? cart.get(id)+"" : "0");
 //        final int id = items.get(position).getId();
 
         final MyViewHolder myholder = holder;

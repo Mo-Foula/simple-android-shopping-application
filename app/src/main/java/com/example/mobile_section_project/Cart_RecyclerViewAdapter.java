@@ -63,19 +63,12 @@ public class Cart_RecyclerViewAdapter extends RecyclerView.Adapter<Cart_Recycler
             return;
         }
 
-        Log.d("A", "AAAAAAAAAAAAAAAAAAAAAA");
         holder.title.setText(item.getName());
-        Log.d("A", "VVVVVVVVVVVV");
-
         holder.desc.setText(item.getDescription());
-        Log.d("A", "QUANTITY     "+ quantity);
-
         holder.quantity.setText(quantity + " ");
-        Log.d("A", "DDDDDDDDDDDDDDDDDD");
-
         holder.img.setImageResource(item.getImage());
         holder.price.setText(item.price+ " EGP");
-
+        holder.quantity_static_text.setText("Quantity: ");
 
 
     }
@@ -86,7 +79,7 @@ public class Cart_RecyclerViewAdapter extends RecyclerView.Adapter<Cart_Recycler
     }
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView title, desc, price, quantity ;
+        TextView title, desc, price, quantity,quantity_static_text;
         ImageView img;
 
 
@@ -98,6 +91,7 @@ public class Cart_RecyclerViewAdapter extends RecyclerView.Adapter<Cart_Recycler
             img = itemView.findViewById(R.id.imgview);
             price = itemView.findViewById(R.id.price_txt);
             quantity = itemView.findViewById(R.id.quantity_txt);
+            quantity_static_text = itemView.findViewById(R.id.textView);
         }
     }
 }
