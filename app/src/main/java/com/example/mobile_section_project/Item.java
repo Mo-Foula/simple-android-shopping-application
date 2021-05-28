@@ -1,8 +1,6 @@
 package com.example.mobile_section_project;
 
-import java.io.Serializable;
-
-public class Item implements Serializable {
+public class Item{
     //name, description, price, image, id, category
     int id, image;
     String name, description, category;
@@ -63,4 +61,6 @@ public class Item implements Serializable {
     public void setCategory(String category) {
         this.category = category;
     }
+
+
 }
