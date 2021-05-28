@@ -20,10 +20,12 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
         final ArrayList<Item> items = new ArrayList<Item>();
 
         //Item(int id, int image, String name, String description)
         items.add(new Item(1,R.drawable.footwear1,"Jordan Gray White Red","Air Jordan 1 Retro High sneakers", 30));
+
         items.add(new Item(2,R.drawable.footwear2,"Jordan White Black","Air Jordan 7 Retro \"Flint\" sneakers", 32.3));
         items.add(new Item(3,R.drawable.footwear3,"Raf Simons","Cylon-21 low-top sneakers", 28));
         items.add(new Item(4,R.drawable.footwear4,"Jordan Red","Air Jordan 13 Retro sneakers", 25));
@@ -35,13 +37,17 @@ public class Home extends AppCompatActivity {
         items.add(new Item(10,R.drawable.footwear10,"Dsquared2","551 lace-up sneakers", 25));
         items.add(new Item(11,R.drawable.footwear11,"Dolce & Gabbana","logo print slip-on trainers", 25));
 
+
         RecyclerView RV = findViewById(R.id.recyclerview);
 
         final Home_RecyclerViewAdapter homeRecyclerViewAdapter = new Home_RecyclerViewAdapter(this, items);
 
         RV.setAdapter(homeRecyclerViewAdapter);
         RV.setLayoutManager(new LinearLayoutManager(this));
+
         Button gotocart = findViewById(R.id.go_to_cart);
+
+//        Button gotocart = findViewById(R.id.Notifi);
         gotocart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

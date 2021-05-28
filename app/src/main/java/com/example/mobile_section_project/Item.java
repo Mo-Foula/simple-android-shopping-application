@@ -61,6 +61,4 @@ public class Item{
     public void setCategory(String category) {
         this.category = category;
     }
-
-
 }

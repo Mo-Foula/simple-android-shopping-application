@@ -22,7 +22,6 @@ public class Home_RecyclerViewAdapter extends RecyclerView.Adapter<Home_Recycler
 
     ArrayList<Item> items;
 
-    //          id,    quantity
     public Map<Integer, Integer> cart;
 
     Context context;
@@ -46,6 +45,7 @@ public class Home_RecyclerViewAdapter extends RecyclerView.Adapter<Home_Recycler
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         holder.desc.setText(items.get(position).getDescription());
+
         //items[position]
         holder.img.setImageResource(items.get(position).getImage());
 //        holder.title.setText(position+1+"");
@@ -54,14 +54,17 @@ public class Home_RecyclerViewAdapter extends RecyclerView.Adapter<Home_Recycler
         holder.quantity.setText("0");
         final int id = position+1;//lazm el items sorted by ID
 //        final int id = items.get(position).getId();
+
         final MyViewHolder myholder = holder;
 
         holder.add_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 //                System.out.println("key is "+id+"  position  "+position);
                 int current = cart.containsKey(id) ? cart.get(id) : 0;
 //                Log.d("awd", "adw");
+
                 if (current >= 0 && current < 99) {
                     //position+1 current+1
                     cart.put(id, current + 1);
