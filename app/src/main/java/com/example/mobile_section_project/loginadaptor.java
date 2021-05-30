@@ -21,11 +21,11 @@ public class loginadaptor extends FragmentPagerAdapter{
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                logintab logintab=new logintab();
-                return logintab;
+                logintab logintab2=new logintab();
+                return logintab2;
             case 1:
-                signuptab signuptab=new signuptab();
-                return signuptab;
+                signuptab signuptab2=new signuptab();
+                return signuptab2;
             default:
                 return null;
         }

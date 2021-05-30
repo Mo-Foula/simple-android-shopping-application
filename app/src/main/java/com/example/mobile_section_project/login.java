@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,23 +24,31 @@ float v=0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //shared perferences
-        final EditText email=(EditText) findViewById(R.id.lemail);
-        final EditText pwd=(EditText) findViewById(R.id.lpassword);
-        Button login=(Button)findViewById(R.id.logintab);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String newemail = email.getText().toString();
-                String newpwd = pwd.getText().toString();
-                SharedPreferences sp = getSharedPreferences("MYPREFS", MODE_PRIVATE);
-                String details = sp.getString(newemail + newpwd + "data", "Email or password incorrect");
-                SharedPreferences.Editor editor=sp.edit();
-                editor.putString("display",details);
-                editor.commit();
-                Intent intent =new Intent(login.this,Home.class);
-                startActivity(intent);
-            }
-        });
+//        final EditText email=(EditText) findViewById(R.id.lemail);
+//        final EditText pwd=(EditText) findViewById(R.id.lpassword);
+//        Button login=(Button)findViewById(R.id.logintab);
+//        login.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String newemail = email.getText().toString();
+//                String newpwd = pwd.getText().toString();
+//                SharedPreferences sp = getSharedPreferences("MYPREFS", MODE_PRIVATE);
+//                String details = sp.getString(newemail + newpwd + "data", "Email or password incorrect");
+//                SharedPreferences.Editor editor=sp.edit();
+//                editor.putString("display",details);
+//                editor.commit();
+//                Intent intent =new Intent(login.this,Home.class);
+//                startActivity(intent);
+//            }
+//        });
+//        View mylayout=findViewById(R.id.layout
+//        Button btn=tabLayout.findViewById(R.id.trail);
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.d("A","stop being retarded");
+//            }
+//        });
 
         //        animation
         tabLayout=findViewById(R.id.layout);

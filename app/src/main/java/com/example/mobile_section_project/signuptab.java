@@ -1,11 +1,16 @@
 package com.example.mobile_section_project;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +29,24 @@ public class signuptab  extends Fragment {
         password=view.findViewById(R.id.lpassword);
         name=view.findViewById(R.id.name);
         login=view.findViewById(R.id.signuptab);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("A","first");
+                SharedPreferences sp=getActivity().getSharedPreferences("MYPREFS", Context.MODE_PRIVATE);
+                String newname=name.getText().toString();
+                String newemail=email.getText().toString();
+                String newpwd=password.getText().toString();
+                SharedPreferences.Editor editor=sp.edit();
+                editor.putString(newemail+newpwd+"data",newname);
+//                editor.putString("email",newemail);
+//                editor.putString("pwd",newpwd);
+//                editor.putString("name",newname);
+                editor.commit();
+                Toast.makeText(getContext(),"Account created successfuly ♥ ",Toast.LENGTH_LONG).show();
+
+            }
+        });
 
         email.setTranslationY(800);
         password.setTranslationY(800);

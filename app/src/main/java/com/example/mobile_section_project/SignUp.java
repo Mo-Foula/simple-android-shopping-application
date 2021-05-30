@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,25 +28,11 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 //        shared pref
-        final EditText name=(EditText) findViewById(R.id.name);
-        final EditText email=(EditText) findViewById(R.id.lemail);
-        final EditText pwd=(EditText) findViewById(R.id.lpassword);
-        Button signup=(Button)findViewById(R.id.signuptab);
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences sp=getSharedPreferences("MYPREFS",MODE_PRIVATE);
-                String newname=name.getText().toString();
-                String newemail=email.getText().toString();
-                String newpwd=pwd.getText().toString();
-                SharedPreferences.Editor editor=sp.edit();
-                editor.putString(newemail+newpwd+"data",newname);
-                editor.commit();
-                Intent intent =new Intent(SignUp.this,login.class);
-                startActivity(intent);
+//        final EditText name=(EditText) findViewById(R.id.name);
+//        final EditText email=(EditText) findViewById(R.id.lemail);
+//        final EditText pwd=(EditText) findViewById(R.id.lpassword);
+//        Button signup=(Button)findViewById(R.id.signuptab);
 
-            }
-        });
 //        Animation of screen
         tabLayout=findViewById(R.id.layout);
         viewPager=findViewById(R.id.viewer);
