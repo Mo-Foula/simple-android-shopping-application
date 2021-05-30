@@ -22,16 +22,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button btn = findViewById(R.id.button);
-        final Context mymine = this;
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent el3asfoor = new Intent(mymine, Home.class);
-                finish();
-                startActivity(el3asfoor);
-            }
-        });
+
+
        
     }
 
