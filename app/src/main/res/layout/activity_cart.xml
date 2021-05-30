@@ -20,19 +20,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/pink">
+        <include
+            android:id="@+id/included_layout"
+            layout="@layout/toolbar_row"
 
-            <TextView
-                android:id="@+id/hellouser"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="hellouser"
-                android:visibility="visible" />
-        </androidx.appcompat.widget.Toolbar>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></include>
 
     </com.google.android.material.appbar.AppBarLayout>
 

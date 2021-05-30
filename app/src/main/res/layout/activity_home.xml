@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
 
@@ -56,3 +57,4 @@
 <!--bdl go to cart-->
 <!--app:layout_constraintBottom_toTopOf="@+id/Notifi"-->
 <!--android:id="@+id/Notifi"-->
+

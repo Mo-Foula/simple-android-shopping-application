@@ -2,7 +2,9 @@ package com.example.mobile_section_project;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Map;
@@ -23,6 +26,17 @@ Button share;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+
+        SharedPreferences sp = getSharedPreferences("MYPREFS", Context.MODE_PRIVATE);
+        String details = sp.getString("display", "Email or password incorrect");
+        String user_name = details;
+        View layout = findViewById(R.id.included_layout);
+        ImageView logo = layout.findViewById(R.id.logo);
+        logo.setImageResource(R.drawable.zftt);
+        ImageView shopiMe = layout.findViewById(R.id.shopiMe);
+        shopiMe.setImageResource(R.drawable.logoname);
+        TextView welcomeText = layout.findViewById(R.id.welcome_text);
+        welcomeText.setText("Welcome, "+user_name);
 
         final ArrayList<Item> items = new ArrayList<Item>();
 
