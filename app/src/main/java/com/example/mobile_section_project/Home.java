@@ -2,8 +2,11 @@ package com.example.mobile_section_project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -61,6 +64,13 @@ public class Home extends AppCompatActivity {
                 }
             }
         });
-
+        String user_name = "Aya";
+        View layout = findViewById(R.id.included_layout);
+        ImageView logo = layout.findViewById(R.id.logo);
+        logo.setImageResource(R.drawable.footwear1);
+        ImageView shopiMe = layout.findViewById(R.id.shopiMe);
+        shopiMe.setImageResource(R.drawable.footwear1);
+        TextView welcomeText = layout.findViewById(R.id.welcome_text);
+        welcomeText.setText("Welcome, "+user_name);
     }
 }

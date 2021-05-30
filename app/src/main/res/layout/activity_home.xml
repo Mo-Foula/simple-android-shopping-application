@@ -11,18 +11,19 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
 
-        android:layout_width="413dp"
-        android:layout_height="65dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <include
+            android:id="@+id/included_layout"
+            layout="@layout/toolbar_row"
+
             android:layout_width="match_parent"
-            android:layout_height="103dp"
-            android:background="@color/pink"></androidx.appcompat.widget.Toolbar>
+            android:layout_height="match_parent"></include>
 
     </com.google.android.material.appbar.AppBarLayout>
 
