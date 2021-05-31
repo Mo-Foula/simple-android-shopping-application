@@ -68,12 +68,13 @@ Button share;
         RV.setLayoutManager(new LinearLayoutManager(this));
 
         share = (Button)findViewById(R.id.share);
+        final String itemssss = cart.size()>1?"items":"item";
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                String shareBody= "Hello Sir You have ordered "+cart.size() +" items"+"\n"+"Your Total price is " +total +" EGP";
+                String shareBody= "Hello, I have ordered "+cart.size() +" "+itemssss +" from ShopiMe application for only " +total +" EGP";
                 String shareSub = "Your subject here";
                 intent.putExtra(Intent.EXTRA_SUBJECT,shareSub);
                 intent.putExtra(Intent.EXTRA_TEXT,shareBody);

@@ -60,6 +60,23 @@ float v=0;
         tabLayout.addTab(tabLayout.newTab().setText("SignUp"));
         tabLayout.setTabGravity(tabLayout.GRAVITY_FILL);
 
+       tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+           @Override
+           public void onTabSelected(TabLayout.Tab tab) {
+               viewPager.setCurrentItem(tab.getPosition(),true);
+           }
+
+           @Override
+           public void onTabUnselected(TabLayout.Tab tab) {
+
+           }
+
+           @Override
+           public void onTabReselected(TabLayout.Tab tab) {
+
+           }
+       });
+
        final loginadaptor adaptor=new loginadaptor(getSupportFragmentManager(),this,tabLayout.getTabCount());
        viewPager.setAdapter(adaptor);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
