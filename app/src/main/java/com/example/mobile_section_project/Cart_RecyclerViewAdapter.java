@@ -19,9 +19,8 @@ import java.util.Set;
 
 public class Cart_RecyclerViewAdapter extends RecyclerView.Adapter<Cart_RecyclerViewAdapter.MyViewHolder>  {
     Context context;
-    Map<Integer, Integer> cart , temp_cart;
-    Integer []array_keys;
-    ArrayList<Item> items;
+    Map<Item, Integer> cart;
+    Item []array_keys;
 
     void printCart(Map<Integer, Integer> cart) {
         System.out.println("AAAAAAAAAAAAAAAAAAAAA");
@@ -30,11 +29,10 @@ public class Cart_RecyclerViewAdapter extends RecyclerView.Adapter<Cart_Recycler
                     ", Value = " + entry.getValue());
     }
 
-    public Cart_RecyclerViewAdapter(Context c, Map<Integer,Integer> cart2 , ArrayList<Item> item) {
+    public Cart_RecyclerViewAdapter(Context c, Map<Item,Integer> cart2 ) {
     context =c;
     this.cart=cart2;
-    this.items= item;
-    array_keys=  cart.keySet().toArray(new Integer[cart.size()]);
+    array_keys=  cart.keySet().toArray(new Item[cart.size()]);
 
     }
 
@@ -49,16 +47,17 @@ public class Cart_RecyclerViewAdapter extends RecyclerView.Adapter<Cart_Recycler
 
     @Override
     public void onBindViewHolder(@NonNull Cart_RecyclerViewAdapter.MyViewHolder holder, int position) {
-        Integer item_id= array_keys[position];
-        Integer quantity = cart.get(item_id);
+        Integer item_id= array_keys[position].getId();
+        Integer quantity = cart.get(array_keys[position]);
         Item item = null;
 
 
-        for (int i=0; i<items.size();i++){
-            if(item_id.compareTo(items.get(i).getId())==0 ){
-                item = items.get(i);
+        for (Map.Entry<Item, Integer> entry : cart.entrySet()){
+            if(item_id.compareTo(entry.getKey().getId())==0 ){
+                item = entry.getKey();
             }
         }
+
         if(item == null){
             return;
         }

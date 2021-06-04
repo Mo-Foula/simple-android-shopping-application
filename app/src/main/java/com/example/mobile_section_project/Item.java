@@ -1,6 +1,8 @@
 package com.example.mobile_section_project;
 
-public class Item{
+import java.io.Serializable;
+
+public class Item implements Serializable {
     //name, description, price, image, id, category
     int id, image;
     String name, description, category;

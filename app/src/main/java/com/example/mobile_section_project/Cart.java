@@ -38,30 +38,31 @@ Button share;
         TextView welcomeText = layout.findViewById(R.id.welcome_text);
         welcomeText.setText("Welcome, "+user_name);
 
-        final ArrayList<Item> items = new ArrayList<Item>();
-
-        //Item(int id, int image, String name, String description)
-        items.add(new Item(1,R.drawable.footwear1,"Jordan Gray White Red","Air Jordan 1 Retro High sneakers", 30));
-        items.add(new Item(2,R.drawable.footwear2,"Jordan White Black","Air Jordan 7 Retro \"Flint\" sneakers", 32.3));
-        items.add(new Item(3,R.drawable.footwear3,"Raf Simons","Cylon-21 low-top sneakers", 28));
-        items.add(new Item(4,R.drawable.footwear4,"Jordan Red","Air Jordan 13 Retro sneakers", 25));
-        items.add(new Item(5,R.drawable.footwear5,"Jordan White Baby Blue","Air Jordan 1 Retro High sneakers", 25));
-        items.add(new Item(6,R.drawable.footwear6,"Off-White","Vulcanized Fiag low-top sneakers", 25));
-        items.add(new Item(7,R.drawable.footwear7,"Palm Angels","Vulcanized touch-strap snakers", 25));
-        items.add(new Item(8,R.drawable.footwear8,"Dsquared2","Bubble low-top sneakers", 25));
-        items.add(new Item(9,R.drawable.footwear9,"Maison Margiela x Reebok","Tabi Instapump chunky sneakers", 25));
-        items.add(new Item(10,R.drawable.footwear10,"Dsquared2","551 lace-up sneakers", 25));
-        items.add(new Item(11,R.drawable.footwear11,"Dolce & Gabbana","logo print slip-on trainers", 25));
-        items.add(new Item(12,R.drawable.footwear11,"Dolce & Gabbana","logo print slip-on trainers", 25));
-
+//        final ArrayList<Item> items = new ArrayList<Item>();
+//
+//        //Item(int id, int image, String name, String description)
+//        items.add(new Item(1,R.drawable.footwear1,"Jordan Gray White Red","Air Jordan 1 Retro High sneakers", 30));
+//        items.add(new Item(2,R.drawable.footwear2,"Jordan White Black","Air Jordan 7 Retro \"Flint\" sneakers", 32.3));
+//        items.add(new Item(3,R.drawable.footwear3,"Raf Simons","Cylon-21 low-top sneakers", 28));
+//        items.add(new Item(4,R.drawable.footwear4,"Jordan Red","Air Jordan 13 Retro sneakers", 25));
+//        items.add(new Item(5,R.drawable.footwear5,"Jordan White Baby Blue","Air Jordan 1 Retro High sneakers", 25));
+//        items.add(new Item(6,R.drawable.footwear6,"Off-White","Vulcanized Fiag low-top sneakers", 25));
+//        items.add(new Item(7,R.drawable.footwear7,"Palm Angels","Vulcanized touch-strap snakers", 25));
+//        items.add(new Item(8,R.drawable.footwear8,"Dsquared2","Bubble low-top sneakers", 25));
+//        items.add(new Item(9,R.drawable.footwear9,"Maison Margiela x Reebok","Tabi Instapump chunky sneakers", 25));
+//        items.add(new Item(10,R.drawable.footwear10,"Dsquared2","551 lace-up sneakers", 25));
+//        items.add(new Item(11,R.drawable.footwear11,"Dolce & Gabbana","logo print slip-on trainers", 25));
+//        items.add(new Item(12,R.drawable.footwear11,"Dolce & Gabbana","logo print slip-on trainers", 25));
+//
 
 
         Intent it = getIntent();
-        final Map<Integer, Integer> cart = (Map<Integer, Integer>) it.getSerializableExtra("ItemsInCart");
+        final Map<Item, Integer> cart = (Map<Item, Integer>) it.getSerializableExtra("ItemsInCart");
         RecyclerView RV = findViewById(R.id.recyclerview);
         TextView total_price= findViewById(R.id.total_price);
-        final Cart_RecyclerViewAdapter cartRecyclerViewAdapter = new Cart_RecyclerViewAdapter(this, cart, items);
-        final double total = calcPrice(cart,items);
+        final Cart_RecyclerViewAdapter cartRecyclerViewAdapter = new Cart_RecyclerViewAdapter(this, cart);
+//        final double total = calcPrice(cart,items);
+        final double total = calcPrice(cart);
         total_price.setText("Total Price: "+total+" EGP");
 
         RV.setAdapter(cartRecyclerViewAdapter);
@@ -124,6 +125,14 @@ Button share;
             }
         });
 
+    }
+
+    double calcPrice(Map<Item, Integer> cart){
+        double x = 0;
+        for (Map.Entry<Item, Integer> entry : cart.entrySet()){
+            x += entry.getKey().getPrice();
+        }
+        return x;
     }
 
     double calcPrice(Map<Integer, Integer> cart,ArrayList<Item> items){
